@@ -1,0 +1,111 @@
+## 100 Class: Informational
+
+There are only a couple 1xx codes which represent an operation during the connection phase. These status codes are sent during the interim of a connection, meaning they are not a final status for the connection. 1xx codes were not apart of HTTP 1.0 and have since been adopted into the 1.1 schema.
+
+100 – Continue: This represents a midpoint response that the initial request has been received and will continue with the full request. It’s not usually part of debugging, but it is associated with most requests.
+
+101 – Switching Protocols: By passing an Upgrade header, the server can switch protocols to a different version of HTTP. For example, there is a difference between TCP and websocket protocols.
+
+
+
+## 200 Class: Successful
+
+All of the 2xx codes represent a successful request. The server response will vary depending on what type of information was sent. But overall each response denotes a successful connection to the server and a successful receipt of information from the server.
+
+200 – OK: This is by far one of the most common status messages. It simply means the request was successful and has connected perfectly with the server. Generally it’ll be set with a GET request to return some information (like an image, stylesheet, or Ajax response).
+
+201 – Created: Going one step further, the 201 code represents a successful request after creating a new resource. This could be a new HTML webpage or another document altogether.
+
+202 – Accepted: This code represents a successful connection to the server, but the response has not yet been processed. 202 is a somewhat equivocal status because it’s left open for other connections while the accepted response is being processed.
+
+203 – Non-Authoritative Information: A 203 response is almost identical to the 200 OK response, except the return information is pulled from a different server. This may happen when pulling out API data or when running through a remote database/server farm.
+
+204 – No Content: The 204 status is returned when information has been accepted by the server but there’s no return data. This can happen for one of many reasons, but all of the data transfer generally takes place in the meta header info.
+
+205 – Reset Content: When a user submits content to the server, it’ll sometimes request the original document to reset. A 205 status code is sent from the server to the client when a document needs to be reset or updated.
+
+206 – Partial Content: Returned information through a 206 status is considered a partial response. This is normally associated with cached page content where the user only needs part of a page to be refreshed.
+
+
+
+## 300 Class: Redirection
+
+Most of these 3xx status codes propose a connection refresh or update on the client’s side. Although this does pertain to your web browser, it’s typically an automatic refresh to adjust for new content or URI structures. In poorly-planned scenarios, these redirection statuses can lead to infinite loops which continue to refresh over and over until the server quits.
+
+300 – Multiple Choices: If a specific resource has moved to many different locations, the 300 status code will appear. This offers a set list of options from which the user can obtain their requested resource or webpage.
+
+301 – Moved Permanently: Most web developers have some foreknowledge of the 301 redirect code. A 301 status indicates that a resource has moved to a new location and passes the new location over to the client. For example, updating a WordPress URL places a permanent 301 redirect onto the old URL. If you have a Wordpress site, there are several tools to help you with managing 301 redirects in WordPress.
+
+302 – Found: A 302 status is very similar to 301 except it’s just a temporary redirect. So when changing the URL for a webpage or resource the 302 redirect tells the client that it’s only temporary. This means the original URL is still considered active.
+
+303 – See Other: Receiving a 303 code means that the request successfully connected to the resource, but the response is found at a different URI. Each 303 status code should include the response URI within the header.
+
+304 – Not Modified: When loading a resource through cache, it will check if the document has been updated or re-cached since a certain period. If the document hasn’t changed, then a 304 status is returned and the cached content stays the same. This saves on bandwidth since cached resources aren’t continually sent over HTTP.
+
+305 – Use Proxy: It may seem odd, but the 305 code represents a forced proxy connection. If a resource or webpage can only be accessed via proxy the 305 status will return with a Location header containing the proxy URI.
+
+306 – Unused: This was originally used in older HTTP specs but currently serves no purpose.
+
+307 – Temporary Redirect: The 307 redirect is very similar to the 302 status code. They both represent a resource that has temporarily changed locations with a new URI. It seems a 307 may be more apt to handle continual updates to new URIs on a frequent basis although a 302 code could also perform the same task. So from a general user’s perspective, they’re just about the same thing.
+
+
+
+## 400 Class: Client-Side Error
+
+Although the 4xx class may strike a sharp pang of fear, client-side errors are not always your fault. These errors generally indicate that something has gone wrong, and the fix is typically on the client’s side rather than the server’s side.
+
+Most of these codes will also return information about the error, specifying which resource or page is causing the trouble. Also some messages could indicate if the problem seems temporary or permanent.
+
+400 – Bad Request: The 400 status code is pretty straightforward and just means that the request itself could not be understood by the server. The culprit is usually a syntax error in the URI.
+
+401 – Unauthorized: Some resources are protected by authorization through a username/password combo stored on the server itself. When accessing a resource such as this, you might be prompted to enter credentials, and if they don’t match up to an authorized account, you’ll get a 401 error.
+
+402 – Payment Required: The 402 status code is currently unused and seems to be reserved for a future purpose.
+
+403 – Forbidden: The 403 forbidden status code is much like the unauthorized code, except you cannot grant yourself authorization. When you get a 403 error, it means the request was acknowledged by the server, but you cannot access the response. This will sometimes happen when a webmaster blocks certain files or folders from visibility over HTTP.
+
+404 – Not Found: When landing on a 404 error, it’s wise to pull out your gentleman’s pipe and magnifying glass, because there’s a mystery that needs a-solvin’! The 404 status code means that a resource or webpage cannot be found at the given URI and has no new redirect or known location.
+
+405 – Method Not Allowed: The 405 status deals with request methods which are prominent in backend development. When you get a 405 error, it means that the request method cannot be accepted. There are plenty of examples, but the most common are POST and GET requests.
+
+406 – Not Acceptable: This one’s a little tricky to understand, but it has to do with how data is returned. The 406 status means that information was accepted by the server, but the response data cannot be sent. It generally happens when a response type is not supported by the client (or your browser).
+
+407 – Proxy Authentication Required: Very much like the 401 status code, the 407 status requires authentication through a proxy. They both operate in the same manner, but 407 runs through a proxy server.
+
+408 – Request Timeout: Servers are programmed to only wait a certain amount of time for a client response. If the client’s connection takes too long, then you’ll get a 408 timeout error. This can sometimes be fixed by just waiting a bit and refreshing the page.
+
+409 – Conflict: A 409 status code occurs when a requested resource needs to be edited but does not offer permission to do so. For example if a file is meant to be deleted or moved but the client’s connection does not have permission, it will result in a 409 conflict status.
+
+410 – Gone: The 410 status code is like a more specific version of 404. It means that a resource has been moved permanently and is not expected to return to the current URI. However it does not give any indication of a new location.
+
+411 – Length Required: Although certainly rare, the 411 status deals directly with the “Content-Length” header. Some return content may require a specified length before the request can be completed. To fix this error, you need to pass a Content-Length header into the request.
+
+412 – Precondition Failed: If some information passed into the request-header is wrong, then you’ll get a 412 status code. The server evaluates this information and will often pass back a helpful message so you know where the problem occurred.
+
+413 – Request Entity Too Large: If a request is larger than the server can handle, it will return a 413 error code. Most server setups have a configuration dictating the largest possible file size. If a form is submitted passing too much information, you may end up with a 413 error.
+
+414 – Request URI Too Long: It’s also possible that the URI passed to the server is too long. Sometimes you’ll notice this happens when you have all those extra parameters on the end of a URL attached by ampersands (?val=1&other=2&long=yes). This is tricky to fix because it may be a problem with the website’s code and not something you can handle directly.
+
+415 – Unsupported Media Type: When submitting content beyond just plaintext/HTML, you may run into this error. The 415 status code is rare but does appear when passing complex data which cannot be supported by the server. Unsupported audio or video file formats are one such example.
+
+416 – Requested Range Not Satisfiable: The Range request-header can be passed to the server and pull out a certain part of the requested information. A 416 status code occurs when the response is too short and cannot access the full range of data. The error message should include information regarding how many bytes were returned or expected to be returned.
+
+417 – Expectation Failed: Another request-header named Expect can cause a 417 status code. When the Expect field cannot be fulfilled by the server, it returns an expectation error. Most 417 responses are pretty vague, so it can be a difficult puzzle to solve.
+
+
+
+## 500 Class: Server-Side Error
+
+All errors in the 5xx class point towards an error on the server’s side of the connection. Some errors may come with additional information, but they’re not always corrigible from the user’s end. Think of 5xx errors as serious warnings to take up with the web hosting company or server administrator.
+
+500 – Internal Server Error: I’m sure many Internet users have seen the 500 status code at some point. This is the most vague and general of all the 5xx class error messages. It means that the server has encountered an unknown error and is unable to complete the request.
+
+501 – Not Implemented: If a request is sent to the server requiring some functionality which is not installed, you’ll get a 501 error in return. This can happen for any number of reasons including lack of modules, database software, or backend language(s).
+
+502 – Bad Gateway: The 502 error is much more common in larger networks. When a particular server cannot be connected or is considered invalid, then it returns a 502 bad gateway. It’s a rather complicated subject which delves into networking and has nothing to do with the client. Take a peek at this Yahoo! Answers post which gives a little more detail.
+
+503 – Service Unavailable: When you get a 503 error, it generally means the web server is overloaded or down for maintenance. It happens when a server receives too much traffic and has to refuse connection requests.
+
+504 – Gateway Timeout: The 504 gateway is a timeout issue which slightly differs from the 502 invalid gateway. In the 504 status code, your connection is successfully accessing the remote server. But that server is acting like a gateway (or proxy), and the response is taking too long. This error can sometimes be fixed if you wait a little while and refresh the page.
+
+505 – HTTP Version Not Supported: If you send a request using an unsupported version of HTTP, the server returns a 505 status code. This is an error rejecting the request because it can only support a certain version of HTTP. The 505 code should return a message explaining which version(s) are supported.
